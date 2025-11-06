@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - AquaCart</title>
+    <meta name="description" content="Review your AquaCart order - Pure, refreshing bottled water delivered to your door.">
+    <link rel="stylesheet" href="../css/Cart.css">
+    <link rel="stylesheet" href="../css/nav-footer.css">
+    <link rel="stylesheet" href="../css/mobileview.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Aqua Cart Home">
+                <svg class="logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Water Droplet Icon -->
+                    <g transform="translate(10, 5)">
+                        <path d="M25 10 C25 10, 15 25, 15 35 C15 42, 19 48, 25 48 C31 48, 35 42, 35 35 C35 25, 25 10, 25 10 Z" 
+                              fill="#4DD0E1" opacity="0.9"/>
+                        <path d="M25 10 C25 10, 15 25, 15 35 C15 42, 19 48, 25 48 C31 48, 35 42, 35 35 C35 25, 25 10, 25 10 Z" 
+                              fill="none" stroke="#00838F" stroke-width="2"/>
+                        <ellipse cx="22" cy="30" rx="4" ry="6" fill="#FFFFFF" opacity="0.4"/>
+                    </g>
+                    <!-- Text: Aqua Cart -->
+                    <text x="60" y="38" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#006064">
+                        Aqua
+                    </text>
+                    <text x="115" y="38" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="#00838F">
+                        Cart
+                    </text>
+                    <!-- Wavy underline -->
+                    <path d="M 60 42 Q 70 45, 80 42 T 100 42 T 120 42 T 140 42 T 160 42" 
+                          stroke="#4DD0E1" stroke-width="2" fill="none" opacity="0.6"/>
+                </svg>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="../php/products.php" role="menuitem">Products</a></li>
+                <li role="none"><a href="About.html" role="menuitem">About</a></li>
+                <li role="none"><a href="mission.html" role="menuitem">Mission</a></li>
+                <li role="none"><a href="../php/Reviews.php" role="menuitem">Reviews</a></li>
+                <li role="none"><a href="Contact.html" role="menuitem">Contact</a></li>
+                <li role="none" class="nav-cart active"><a href="Cart.html" role="menuitem" class="btn-cart" aria-label="Shopping Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">3</span>
+                </a></li>
+                <li role="none" class="nav-cta"><a href="../Dashboard/Dashboard.html" role="menuitem" class="btn-login">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Animated Water Background -->
+    <div class="water-bg">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+
+    <!-- Cart Main Content -->
+    <main class="cart-container">
+        <div class="cart-header">
+            <h1 class="cart-title">Your Cart 💧</h1>
+            <p class="cart-subtitle">Review your refreshing selection</p>
+        </div>
+
+        <div class="cart-content">
+            <!-- Cart Items Section -->
+            <section class="cart-items-section">
+                <div class="cart-items-header">
+                    <h2>Cart Items</h2>
+                    <button class="clear-cart-btn" id="clearCartBtn">
+                        <i class="fas fa-trash-alt"></i> Clear All
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item glass-card" data-id="1" data-price="24.99">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/120x180/00A9D6/ffffff?text=Premium+Alkaline" alt="Premium Alkaline Water">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name">Premium Alkaline Water</h3>
+                            <p class="item-description">pH 9.5+ • Ionized • Essential Minerals</p>
+                            <p class="item-size">24 Bottles • 500ml each</p>
+                            <div class="item-actions-mobile">
+                                <button class="remove-item-btn" title="Remove item">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-quantity">
+                            <label for="qty-1">Quantity:</label>
+                            <div class="quantity-control">
+                                <button class="qty-btn qty-decrease" aria-label="Decrease quantity">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="qty-1" class="qty-input" value="2" min="1" max="99" aria-label="Quantity">
+                                <button class="qty-btn qty-increase" aria-label="Increase quantity">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <span class="price-label">Price:</span>
+                            <span class="price-value">$24.99</span>
+                        </div>
+                        <div class="item-total">
+                            <span class="total-label">Total:</span>
+                            <span class="total-value">$49.98</span>
+                        </div>
+                        <button class="remove-item-btn desktop-only" title="Remove item">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item glass-card" data-id="2" data-price="18.50">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/120x180/00737F/ffffff?text=Sparkling+Water" alt="Sparkling Mineral Water">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name">Sparkling Mineral Water</h3>
+                            <p class="item-description">Naturally Carbonated • Crisp & Refreshing</p>
+                            <p class="item-size">12 Bottles • 750ml each</p>
+                            <div class="item-actions-mobile">
+                                <button class="remove-item-btn" title="Remove item">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-quantity">
+                            <label for="qty-2">Quantity:</label>
+                            <div class="quantity-control">
+                                <button class="qty-btn qty-decrease" aria-label="Decrease quantity">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="qty-2" class="qty-input" value="1" min="1" max="99" aria-label="Quantity">
+                                <button class="qty-btn qty-increase" aria-label="Increase quantity">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <span class="price-label">Price:</span>
+                            <span class="price-value">$18.50</span>
+                        </div>
+                        <div class="item-total">
+                            <span class="total-label">Total:</span>
+                            <span class="total-value">$18.50</span>
+                        </div>
+                        <button class="remove-item-btn desktop-only" title="Remove item">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item glass-card" data-id="3" data-price="22.00">
+                        <div class="item-image">
+                            <img src="https://via.placeholder.com/120x180/00D6A1/ffffff?text=Natural+Spring" alt="Natural Spring Water">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name">Natural Spring Water</h3>
+                            <p class="item-description">Pure Mountain Spring • Natural Minerals</p>
+                            <p class="item-size">18 Bottles • 1L each</p>
+                            <div class="item-actions-mobile">
+                                <button class="remove-item-btn" title="Remove item">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-quantity">
+                            <label for="qty-3">Quantity:</label>
+                            <div class="quantity-control">
+                                <button class="qty-btn qty-decrease" aria-label="Decrease quantity">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" id="qty-3" class="qty-input" value="1" min="1" max="99" aria-label="Quantity">
+                                <button class="qty-btn qty-increase" aria-label="Increase quantity">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <span class="price-label">Price:</span>
+                            <span class="price-value">$22.00</span>
+                        </div>
+                        <div class="item-total">
+                            <span class="total-label">Total:</span>
+                            <span class="total-value">$22.00</span>
+                        </div>
+                        <button class="remove-item-btn desktop-only" title="Remove item">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty Cart State -->
+                <div class="empty-cart" id="emptyCart" style="display: none;">
+                    <div class="empty-illustration">
+                        <i class="fas fa-droplet"></i>
+                        <i class="fas fa-droplet"></i>
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                    <h2>Your cart is empty</h2>
+                    <p>Start adding some refreshing water to hydrate!</p>
+                    <a href="products.html" class="btn-shop">
+                        <i class="fas fa-shopping-bag"></i> Shop Products
+                    </a>
+                </div>
+            </section>
+
+            <!-- Order Summary Sidebar -->
+            <aside class="order-summary glass-card">
+                <h2 class="summary-title">Order Summary</h2>
+                
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$90.48</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span id="shipping">FREE</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (8%):</span>
+                        <span id="tax">$7.24</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="total">$97.72</span>
+                    </div>
+                </div>
+
+                <div class="promo-code">
+                    <input type="text" id="promoInput" placeholder="Enter promo code" aria-label="Promo code">
+                    <button id="applyPromoBtn" class="btn-apply">Apply</button>
+                </div>
+
+                <div class="promo-message" id="promoMessage"></div>
+
+                <button class="btn-checkout" id="checkoutBtn">
+                    <i class="fas fa-lock"></i> Proceed to Checkout
+                </button>
+
+                <div class="security-badges">
+                    <div class="badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Checkout</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Shipping $500+</span>
+                    </div>
+                </div>
+
+                <a href="products.html" class="continue-shopping">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Aqua Cart</h3>
+                    <p>Pure, crisp hydration delivered responsibly to your doorstep. ISO certified, locally sourced, eco-friendly.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/aquacart" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </a>
+                        <a href="https://instagram.com/aquacart" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" width="24" height="24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                        </a>
+                        <a href="https://twitter.com/aquacart" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html">Purified Water</a></li>
+                        <li><a href="products.html">Mineral Water</a></li>
+                        <li><a href="products.html">Alkaline Water</a></li>
+                        <li><a href="products.html">Sparkling Water</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="mission.html">Our Mission</a></li>
+                        <li><a href="Reviews.html">Reviews</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📞 (02) 8123-4567</li>
+                        <li>📱 +63 917 123 4567</li>
+                        <li>✉️ hello@aquacart.ph</li>
+                        <li>📍 Metro Manila, Philippines</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aqua Cart. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/Cart.js"></script>
+</body>
+</html>

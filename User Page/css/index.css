@@ -1,0 +1,615 @@
+/* ===================================
+   AQUA CART - HERO SECTION STYLES
+   Premium Watery Aesthetic Design
+   =================================== */
+
+/* ===================================
+   CSS VARIABLES & RESET
+   =================================== */
+:root {
+    /* Colors - Soft Aqua to Deep Sea Teal Gradient */
+    --color-pale-aqua: #E0F7FA;
+    --color-light-aqua: #B2EBF2;
+    --color-aqua: #4DD0E1;
+    --color-deep-teal: #00838F;
+    --color-dark-teal: #006064;
+    --color-white: #FFFFFF;
+    --color-glass: rgba(255, 255, 255, 0.15);
+    --color-glass-border: rgba(255, 255, 255, 0.25);
+    --color-shadow: rgba(0, 131, 143, 0.15);
+    --color-text-primary: #263238;
+    --color-text-secondary: #546E7A;
+    --color-text-light: #ECEFF1;
+    
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+    --font-size-subhead: 18px;
+    --font-size-h1-mobile: 32px;
+    --font-size-h1-tablet: 42px;
+    --font-size-h1-desktop: 56px;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 64px;
+    
+    /* Effects */
+    --blur-glass: 12px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-pill: 50px;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+}
+
+/* ===================================
+   HERO SECTION
+   =================================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, 
+        var(--color-pale-aqua) 0%, 
+        var(--color-light-aqua) 50%, 
+        var(--color-aqua) 100%);
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+/* Animated Background Overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(77, 208, 225, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 131, 143, 0.2) 0%, transparent 50%);
+    animation: gradientShift 15s ease infinite;
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* ===================================
+   BUTTONS
+   =================================== */
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--border-radius-pill);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-primary);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-aqua) 0%, var(--color-deep-teal) 100%);
+    color: var(--color-white);
+    box-shadow: 0 8px 24px rgba(77, 208, 225, 0.4);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(77, 208, 225, 0.5);
+    outline: none;
+}
+
+.btn-primary:focus-visible {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 3px;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-dark-teal);
+    border-color: var(--color-dark-teal);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background: rgba(77, 208, 225, 0.1);
+    border-color: var(--color-aqua);
+    color: var(--color-aqua);
+    outline: none;
+}
+
+.btn-secondary:focus-visible {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 3px;
+}
+
+.btn-nav {
+    padding: 10px 24px;
+    font-size: var(--font-size-small);
+}
+
+/* Ripple Effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   HERO CONTAINER
+   =================================== */
+.hero-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    align-items: center;
+    width: 100%;
+}
+
+/* ===================================
+   HERO CONTENT (LEFT SIDE)
+   =================================== */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    z-index: 10;
+}
+
+.hero-headline {
+    font-size: var(--font-size-h1-desktop);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-dark-teal);
+    margin: 0;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-headline .highlight {
+    background: linear-gradient(135deg, var(--color-aqua) 0%, var(--color-deep-teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subheadline {
+    font-size: var(--font-size-subhead);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 500px;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   CALL TO ACTIONS
+   =================================== */
+.hero-ctas {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+/* ===================================
+   TRUST STRIP
+   =================================== */
+.trust-strip {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+    animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-glass);
+    backdrop-filter: blur(var(--blur-glass));
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-glass-border);
+    transition: all var(--transition-smooth);
+}
+
+.trust-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 24px var(--color-shadow);
+}
+
+.trust-icon {
+    color: var(--color-aqua);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trust-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.trust-text strong {
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    color: var(--color-dark-teal);
+}
+
+.trust-text span {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+}
+
+/* ===================================
+   COUNTER
+   =================================== */
+.hero-counter {
+    margin-top: var(--spacing-sm);
+    animation: fadeInUp 0.8s ease-out 0.8s backwards;
+}
+
+.hero-counter p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.counter-number {
+    font-weight: 700;
+    color: var(--color-deep-teal);
+    font-size: 20px;
+}
+
+/* ===================================
+   HERO IMAGERY (RIGHT SIDE)
+   =================================== */
+.hero-imagery {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    animation: fadeInRight 1s ease-out 0.4s backwards;
+    will-change: transform;
+    min-height: 500px;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 3D Product Scene Container */
+.product-scene {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3D Water Bottle */
+.water-bottle-3d {
+    position: relative;
+    z-index: 10;
+    animation: gentleBob 6s ease-in-out infinite;
+    filter: drop-shadow(0 30px 60px rgba(0, 131, 143, 0.25));
+}
+
+@keyframes gentleBob {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.water-bottle-3d:hover {
+    animation-play-state: paused;
+    transform: scale(1.05);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating Water Droplets */
+.floating-droplet {
+    position: absolute;
+    animation: floatUpDown 4s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px rgba(77, 208, 225, 0.3));
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+.floating-droplet:hover {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+}
+
+/* Droplet Positions */
+.droplet-1 {
+    top: 50px;
+    left: 20px;
+    animation-delay: 0s;
+    animation-duration: 5s;
+}
+
+.droplet-2 {
+    bottom: 80px;
+    right: 30px;
+    animation-delay: 1.5s;
+    animation-duration: 6s;
+}
+
+.droplet-3 {
+    bottom: 150px;
+    left: 40px;
+    animation-delay: 3s;
+    animation-duration: 5.5s;
+}
+
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(-3deg);
+    }
+    75% {
+        transform: translateY(-25px) rotate(3deg);
+    }
+}
+
+/* Add rotation animation */
+@keyframes floatRotate {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+/* Alternative droplet animation */
+.droplet-2 {
+    animation-name: floatRotate;
+}
+
+/* Sparkle effect on droplets */
+.floating-droplet svg {
+    transition: filter 0.3s ease;
+}
+
+.floating-droplet:hover svg {
+    filter: brightness(1.3) drop-shadow(0 0 12px rgba(77, 208, 225, 0.8));
+}
+
+/* Legacy support for old structure */
+.hero-product {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 16px 48px rgba(0, 131, 143, 0.3));
+    transition: transform var(--transition-smooth);
+}
+
+.hero-product:hover .product-image {
+    transform: scale(1.05) translateY(-5px);
+}
+
+/* Droplet Animation Container */
+.droplet-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ===================================
+   LIFESTYLE THUMBNAILS
+   =================================== */
+.lifestyle-thumbnails {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background: var(--color-glass);
+    backdrop-filter: blur(var(--blur-glass));
+    border: 2px solid var(--color-glass-border);
+    transition: all var(--transition-smooth);
+    cursor: pointer;
+}
+
+.thumbnail:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 32px var(--color-shadow);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+}
+
+.thumbnail:hover img {
+    transform: scale(1.1);
+}
+
+/* ===================================
+   SCROLL INDICATOR
+   =================================== */
+.scroll-indicator {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-deep-teal);
+    font-size: var(--font-size-small);
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator svg {
+    color: var(--color-aqua);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* ===================================
+   ACCESSIBILITY ENHANCEMENTS
+   =================================== */
+
+/* Focus Styles */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 3px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text-primary: #000000;
+        --color-text-secondary: #1A1A1A;
+        --color-aqua: #0097A7;
+        --color-deep-teal: #004D56;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        border-width: 3px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .scroll-indicator,
+    .droplet-animation,
+    .footer {
+        display: none;
+    }
+
+    .hero {
+        height: auto;
+        background: white;
+    }
+}
