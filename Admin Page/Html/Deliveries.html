@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deliveries Management - AquaCart Admin</title>
+    <meta name="description" content="Track and manage all AquaCart deliveries">
+    <link rel="stylesheet" href="../Css/Dashboard.css">
+    <link rel="stylesheet" href="../Css/Deliveries.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Water Background -->
+    <div class="water-bg">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="droplet droplet1"></div>
+        <div class="droplet droplet2"></div>
+        <div class="droplet droplet3"></div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar glass-card">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+                    <path d="M25 5 C25 5, 15 20, 15 30 C15 37, 19 43, 25 43 C31 43, 35 37, 35 30 C35 20, 25 5, 25 5 Z" 
+                          fill="#4DD0E1" opacity="0.9"/>
+                    <path d="M25 5 C25 5, 15 20, 15 30 C15 37, 19 43, 25 43 C31 43, 35 37, 35 30 C35 20, 25 5, 25 5 Z" 
+                          fill="none" stroke="#00838F" stroke-width="2"/>
+                    <ellipse cx="22" cy="25" rx="3" ry="5" fill="#FFFFFF" opacity="0.5"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-aqua">Aqua</span><span class="logo-cart">Cart</span>
+                    <span class="logo-admin">Admin</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="Dashboard.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Orders.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Orders</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Products.html" class="nav-item">
+                <i class="fas fa-droplet"></i>
+                <span>Products</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Deliveries.html" class="nav-item active">
+                <i class="fas fa-truck"></i>
+                <span>Deliveries</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+                <div class="ripple"></div>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile glass-mini">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <span class="admin-name">Admin User</span>
+                    <span class="admin-role">Super Admin</span>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar glass-card">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="search-bar glass-mini">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search deliveries by ID, driver, or location..." id="searchInput">
+            </div>
+
+            <div class="topbar-actions">
+                <button class="action-btn glass-mini" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </button>
+                <button class="action-btn glass-mini" id="messagesBtn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="action-btn glass-mini" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Deliveries Section -->
+        <section class="deliveries-section">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="header-left">
+                    <h1 class="page-title">Deliveries Management 🚚</h1>
+                    <p class="page-subtitle">Real-time tracking of all active deliveries</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refresh</span>
+                    </button>
+                    <button class="btn-primary" id="scheduleDeliveryBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Schedule Delivery</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Delivery Stats -->
+            <div class="delivery-stats">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon on-route">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">On Route</span>
+                        <h3 class="stat-value">143</h3>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Completed Today</span>
+                        <h3 class="stat-value">87</h3>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Pending</span>
+                        <h3 class="stat-value">56</h3>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon drivers">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Active Drivers</span>
+                        <h3 class="stat-value">24</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-bar glass-card">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-status="all">
+                        All Deliveries
+                        <span class="count">286</span>
+                    </button>
+                    <button class="filter-btn" data-status="on-route">
+                        <i class="fas fa-truck"></i>
+                        On Route
+                        <span class="count">143</span>
+                    </button>
+                    <button class="filter-btn" data-status="completed">
+                        <i class="fas fa-check"></i>
+                        Completed
+                        <span class="count">87</span>
+                    </button>
+                    <button class="filter-btn" data-status="pending">
+                        <i class="fas fa-clock"></i>
+                        Pending
+                        <span class="count">56</span>
+                    </button>
+                </div>
+                <div class="filter-actions">
+                    <select class="filter-select glass-mini" id="zoneSelect">
+                        <option value="all">All Zones</option>
+                        <option value="metro-manila">Metro Manila</option>
+                        <option value="quezon-city">Quezon City</option>
+                        <option value="makati">Makati</option>
+                        <option value="manila">Manila</option>
+                        <option value="pasig">Pasig</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="map-container glass-card">
+                <div class="map-header">
+                    <h3 class="map-title">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Delivery Zones Map
+                    </h3>
+                    <div class="map-controls">
+                        <button class="map-btn" title="Zoom In">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="map-btn" title="Zoom Out">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="map-btn" title="Recenter">
+                            <i class="fas fa-crosshairs"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="map-placeholder">
+                    <div class="map-overlay">
+                        <i class="fas fa-map-location-dot"></i>
+                        <h4>Interactive Map View</h4>
+                        <p>Real-time tracking of all delivery vehicles</p>
+                        <div class="map-markers">
+                            <div class="marker on-route">
+                                <i class="fas fa-truck"></i>
+                                <span>143 On Route</span>
+                            </div>
+                            <div class="marker completed">
+                                <i class="fas fa-flag-checkered"></i>
+                                <span>87 Completed</span>
+                            </div>
+                            <div class="marker pending">
+                                <i class="fas fa-location-dot"></i>
+                                <span>56 Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deliveries Grid -->
+            <div class="deliveries-grid" id="deliveriesGrid">
+                <!-- Delivery Card 1 - On Route -->
+                <div class="delivery-card glass-card" data-status="on-route" data-delivery-id="DLV-2547">
+                    <div class="card-header">
+                        <div class="delivery-id">
+                            <i class="fas fa-hashtag"></i>
+                            <span>DLV-2547</span>
+                        </div>
+                        <span class="status-badge on-route">
+                            <i class="fas fa-truck"></i>
+                            On Route
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="driver-details">
+                                <span class="driver-name">Carlos Mendoza</span>
+                                <span class="vehicle-no">
+                                    <i class="fas fa-car"></i>
+                                    ABC-1234
+                                </span>
+                            </div>
+                        </div>
+                        <div class="delivery-details">
+                            <div class="detail-row">
+                                <i class="fas fa-box"></i>
+                                <span>Order #2547 - 24 Bottles</span>
+                            </div>
+                            <div class="detail-row">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Quezon City, Metro Manila</span>
+                            </div>
+                            <div class="detail-row time">
+                                <i class="fas fa-clock"></i>
+                                <span>ETA: 25 mins</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn track-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track
+                        </button>
+                        <button class="card-btn contact-btn">
+                            <i class="fas fa-phone"></i>
+                            Contact
+                        </button>
+                        <button class="card-btn details-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Delivery Card 2 - Completed -->
+                <div class="delivery-card glass-card" data-status="completed" data-delivery-id="DLV-2546">
+                    <div class="card-header">
+                        <div class="delivery-id">
+                            <i class="fas fa-hashtag"></i>
+                            <span>DLV-2546</span>
+                        </div>
+                        <span class="status-badge completed">
+                            <i class="fas fa-check-circle"></i>
+                            Completed
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="driver-details">
+                                <span class="driver-name">Maria Santos</span>
+                                <span class="vehicle-no">
+                                    <i class="fas fa-car"></i>
+                                    XYZ-5678
+                                </span>
+                            </div>
+                        </div>
+                        <div class="delivery-details">
+                            <div class="detail-row">
+                                <i class="fas fa-box"></i>
+                                <span>Order #2546 - 12 Jugs</span>
+                            </div>
+                            <div class="detail-row">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Makati City, Metro Manila</span>
+                            </div>
+                            <div class="detail-row time">
+                                <i class="fas fa-check"></i>
+                                <span>Delivered 15 mins ago</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill complete" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn track-btn disabled">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track
+                        </button>
+                        <button class="card-btn contact-btn">
+                            <i class="fas fa-phone"></i>
+                            Contact
+                        </button>
+                        <button class="card-btn details-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Delivery Card 3 - Pending -->
+                <div class="delivery-card glass-card" data-status="pending" data-delivery-id="DLV-2545">
+                    <div class="card-header">
+                        <div class="delivery-id">
+                            <i class="fas fa-hashtag"></i>
+                            <span>DLV-2545</span>
+                        </div>
+                        <span class="status-badge pending">
+                            <i class="fas fa-clock"></i>
+                            Pending
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="driver-info">
+                            <div class="driver-avatar unassigned">
+                                <i class="fas fa-user-slash"></i>
+                            </div>
+                            <div class="driver-details">
+                                <span class="driver-name">Unassigned</span>
+                                <span class="vehicle-no">
+                                    <i class="fas fa-car"></i>
+                                    N/A
+                                </span>
+                            </div>
+                        </div>
+                        <div class="delivery-details">
+                            <div class="detail-row">
+                                <i class="fas fa-box"></i>
+                                <span>Order #2545 - 36 Bottles</span>
+                            </div>
+                            <div class="detail-row">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Manila City, Metro Manila</span>
+                            </div>
+                            <div class="detail-row time">
+                                <i class="fas fa-hourglass-half"></i>
+                                <span>Awaiting Assignment</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn assign-btn">
+                            <i class="fas fa-user-plus"></i>
+                            Assign Driver
+                        </button>
+                        <button class="card-btn details-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Delivery Card 4 - On Route -->
+                <div class="delivery-card glass-card" data-status="on-route" data-delivery-id="DLV-2544">
+                    <div class="card-header">
+                        <div class="delivery-id">
+                            <i class="fas fa-hashtag"></i>
+                            <span>DLV-2544</span>
+                        </div>
+                        <span class="status-badge on-route">
+                            <i class="fas fa-truck"></i>
+                            On Route
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="driver-details">
+                                <span class="driver-name">Roberto Cruz</span>
+                                <span class="vehicle-no">
+                                    <i class="fas fa-car"></i>
+                                    DEF-9012
+                                </span>
+                            </div>
+                        </div>
+                        <div class="delivery-details">
+                            <div class="detail-row">
+                                <i class="fas fa-box"></i>
+                                <span>Order #2544 - 18 Bottles</span>
+                            </div>
+                            <div class="detail-row">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Pasig City, Metro Manila</span>
+                            </div>
+                            <div class="detail-row time">
+                                <i class="fas fa-clock"></i>
+                                <span>ETA: 45 mins</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn track-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track
+                        </button>
+                        <button class="card-btn contact-btn">
+                            <i class="fas fa-phone"></i>
+                            Contact
+                        </button>
+                        <button class="card-btn details-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Delivery Card 5 - On Route -->
+                <div class="delivery-card glass-card" data-status="on-route" data-delivery-id="DLV-2543">
+                    <div class="card-header">
+                        <div class="delivery-id">
+                            <i class="fas fa-hashtag"></i>
+                            <span>DLV-2543</span>
+                        </div>
+                        <span class="status-badge on-route">
+                            <i class="fas fa-truck"></i>
+                            On Route
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="driver-details">
+                                <span class="driver-name">Anna Reyes</span>
+                                <span class="vehicle-no">
+                                    <i class="fas fa-car"></i>
+                                    GHI-3456
+                                </span>
+                            </div>
+                        </div>
+                        <div class="delivery-details">
+                            <div class="detail-row">
+                                <i class="fas fa-box"></i>
+                                <span>Order #2543 - 48 Bottles</span>
+                            </div>
+                            <div class="detail-row">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Taguig City, Metro Manila</span>
+                            </div>
+                            <div class="detail-row time">
+                                <i class="fas fa-clock"></i>
+                                <span>ETA: 1 hour 10 mins</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn track-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track
+                        </button>
+                        <button class="card-btn contact-btn">
+                            <i class="fas fa-phone"></i>
+                            Contact
+                        </button>
+                        <button class="card-btn details-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Delivery Card 6 - Completed -->
+                <div class="delivery-card glass-card" data-status="completed" data-delivery-id="DLV-2542">
+                    <div class="card-header">
+                        <div class="delivery-id">
+                            <i class="fas fa-hashtag"></i>
+                            <span>DLV-2542</span>
+                        </div>
+                        <span class="status-badge completed">
+                            <i class="fas fa-check-circle"></i>
+                            Completed
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="driver-details">
+                                <span class="driver-name">Pedro Garcia</span>
+                                <span class="vehicle-no">
+                                    <i class="fas fa-car"></i>
+                                    JKL-7890
+                                </span>
+                            </div>
+                        </div>
+                        <div class="delivery-details">
+                            <div class="detail-row">
+                                <i class="fas fa-box"></i>
+                                <span>Order #2542 - 30 Bottles</span>
+                            </div>
+                            <div class="detail-row">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Parañaque City, Metro Manila</span>
+                            </div>
+                            <div class="detail-row time">
+                                <i class="fas fa-check"></i>
+                                <span>Delivered 1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill complete" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="card-btn track-btn disabled">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track
+                        </button>
+                        <button class="card-btn contact-btn">
+                            <i class="fas fa-phone"></i>
+                            Contact
+                        </button>
+                        <button class="card-btn details-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Delivery Details Modal -->
+    <div class="modal-overlay" id="deliveryDetailsModal">
+        <div class="modal glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Delivery Details</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="delivery-info-header">
+                    <div class="info-id">
+                        <span class="label">Delivery ID:</span>
+                        <span class="value" id="modalDeliveryId">DLV-2547</span>
+                    </div>
+                    <span class="status-badge on-route" id="modalStatus">
+                        <i class="fas fa-truck"></i>
+                        On Route
+                    </span>
+                </div>
+                
+                <div class="info-section">
+                    <h4>Driver Information</h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Driver Name:</span>
+                            <span class="value" id="modalDriverName">Carlos Mendoza</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Vehicle No:</span>
+                            <span class="value" id="modalVehicle">ABC-1234</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Phone:</span>
+                            <span class="value">+63 912 345 6789</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h4>Delivery Information</h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Order ID:</span>
+                            <span class="value">#2547</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Items:</span>
+                            <span class="value">24 Bottles</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Destination:</span>
+                            <span class="value">Quezon City, Metro Manila</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Estimated Time:</span>
+                            <span class="value">25 mins</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="delivery-timeline">
+                    <h4>Delivery Timeline</h4>
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-time">10:30 AM</span>
+                                <span class="timeline-text">Order Picked Up</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item completed">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-time">10:45 AM</span>
+                                <span class="timeline-text">Out for Delivery</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-time">11:20 AM</span>
+                                <span class="timeline-text">In Transit</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-time">ETA 11:45 AM</span>
+                                <span class="timeline-text">Estimated Delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Close</button>
+                <button class="btn-primary" id="trackOnMapBtn">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Track on Map
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Js/Dashboard.js"></script>
+    <script src="../Js/Deliveries.js"></script>
+</body>
+</html>

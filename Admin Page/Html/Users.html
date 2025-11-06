@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management - AquaCart Admin</title>
+    <meta name="description" content="Manage all AquaCart users">
+    <link rel="stylesheet" href="../Css/Dashboard.css">
+    <link rel="stylesheet" href="../Css/Users.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Water Background -->
+    <div class="water-bg">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="droplet droplet1"></div>
+        <div class="droplet droplet2"></div>
+        <div class="droplet droplet3"></div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar glass-card">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+                    <path d="M25 5 C25 5, 15 20, 15 30 C15 37, 19 43, 25 43 C31 43, 35 37, 35 30 C35 20, 25 5, 25 5 Z" 
+                          fill="#4DD0E1" opacity="0.9"/>
+                    <path d="M25 5 C25 5, 15 20, 15 30 C15 37, 19 43, 25 43 C31 43, 35 37, 35 30 C35 20, 25 5, 25 5 Z" 
+                          fill="none" stroke="#00838F" stroke-width="2"/>
+                    <ellipse cx="22" cy="25" rx="3" ry="5" fill="#FFFFFF" opacity="0.5"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-aqua">Aqua</span><span class="logo-cart">Cart</span>
+                    <span class="logo-admin">Admin</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="Dashboard.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Orders.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Orders</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Products.html" class="nav-item">
+                <i class="fas fa-droplet"></i>
+                <span>Products</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Users.html" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Deliveries.html" class="nav-item">
+                <i class="fas fa-truck"></i>
+                <span>Deliveries</span>
+                <div class="ripple"></div>
+            </a>
+            <a href="Settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+                <div class="ripple"></div>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile glass-mini">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <span class="admin-name">Admin User</span>
+                    <span class="admin-role">Super Admin</span>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar glass-card">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="search-bar glass-mini">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search users by name, email, or phone..." id="searchInput">
+            </div>
+
+            <div class="topbar-actions">
+                <button class="action-btn glass-mini" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </button>
+                <button class="action-btn glass-mini" id="messagesBtn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="action-btn glass-mini" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Users Management Section -->
+        <section class="users-section">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="header-left">
+                    <h1 class="page-title">Users Management 👥</h1>
+                    <p class="page-subtitle">Manage all AquaCart customers</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" id="exportUsersBtn">
+                        <i class="fas fa-download"></i>
+                        <span>Export Users</span>
+                    </button>
+                    <button class="btn-primary" id="addUserBtn">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add User</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Stats -->
+            <div class="user-stats">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon active">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Total Users</span>
+                        <h3 class="stat-value">1,834</h3>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon active">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Active Users</span>
+                        <h3 class="stat-value">1,752</h3>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon suspended">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Suspended</span>
+                        <h3 class="stat-value">82</h3>
+                    </div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon new">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">New This Month</span>
+                        <h3 class="stat-value">247</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-bar glass-card">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-status="all">
+                        All Users
+                        <span class="count">1834</span>
+                    </button>
+                    <button class="filter-btn" data-status="active">
+                        <i class="fas fa-check-circle"></i>
+                        Active
+                        <span class="count">1752</span>
+                    </button>
+                    <button class="filter-btn" data-status="suspended">
+                        <i class="fas fa-ban"></i>
+                        Suspended
+                        <span class="count">82</span>
+                    </button>
+                </div>
+                <div class="filter-actions">
+                    <button class="action-btn glass-mini" id="refreshBtn" title="Refresh">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <select class="filter-select glass-mini" id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name">Name (A-Z)</option>
+                        <option value="orders">Most Orders</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="table-container glass-card">
+                <div class="table-wrapper">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="selectAll" class="checkbox">
+                                </th>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Orders</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- User 1 -->
+                            <tr data-user-id="1834" data-status="active">
+                                <td>
+                                    <input type="checkbox" class="checkbox row-checkbox">
+                                </td>
+                                <td class="user-id">#1834</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">JD</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Juan Dela Cruz</span>
+                                            <span class="user-joined">Joined Oct 2025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="user-email">juan.delacruz@email.com</td>
+                                <td class="user-phone">+63 912 345 6789</td>
+                                <td class="user-orders">
+                                    <span class="orders-badge">42 orders</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge active">
+                                        <i class="fas fa-check-circle"></i>
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-icon view-user" title="View Profile">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-icon suspend-user" title="Suspend User">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- User 2 -->
+                            <tr data-user-id="1833" data-status="active">
+                                <td>
+                                    <input type="checkbox" class="checkbox row-checkbox">
+                                </td>
+                                <td class="user-id">#1833</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">MS</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Maria Santos</span>
+                                            <span class="user-joined">Joined Sep 2025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="user-email">maria.santos@email.com</td>
+                                <td class="user-phone">+63 918 765 4321</td>
+                                <td class="user-orders">
+                                    <span class="orders-badge">28 orders</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge active">
+                                        <i class="fas fa-check-circle"></i>
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-icon view-user" title="View Profile">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-icon suspend-user" title="Suspend User">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- User 3 - Suspended -->
+                            <tr data-user-id="1832" data-status="suspended">
+                                <td>
+                                    <input type="checkbox" class="checkbox row-checkbox">
+                                </td>
+                                <td class="user-id">#1832</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar suspended">RC</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Roberto Cruz</span>
+                                            <span class="user-joined">Joined Aug 2025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="user-email">roberto.cruz@email.com</td>
+                                <td class="user-phone">+63 917 234 5678</td>
+                                <td class="user-orders">
+                                    <span class="orders-badge">15 orders</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge suspended">
+                                        <i class="fas fa-ban"></i>
+                                        Suspended
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-icon view-user" title="View Profile">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-icon activate-user" title="Activate User">
+                                        <i class="fas fa-check-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- User 4 -->
+                            <tr data-user-id="1831" data-status="active">
+                                <td>
+                                    <input type="checkbox" class="checkbox row-checkbox">
+                                </td>
+                                <td class="user-id">#1831</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">AR</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Anna Reyes</span>
+                                            <span class="user-joined">Joined Oct 2025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="user-email">anna.reyes@email.com</td>
+                                <td class="user-phone">+63 920 987 6543</td>
+                                <td class="user-orders">
+                                    <span class="orders-badge">67 orders</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge active">
+                                        <i class="fas fa-check-circle"></i>
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-icon view-user" title="View Profile">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-icon suspend-user" title="Suspend User">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- User 5 -->
+                            <tr data-user-id="1830" data-status="active">
+                                <td>
+                                    <input type="checkbox" class="checkbox row-checkbox">
+                                </td>
+                                <td class="user-id">#1830</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">PG</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Pedro Garcia</span>
+                                            <span class="user-joined">Joined Sep 2025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="user-email">pedro.garcia@email.com</td>
+                                <td class="user-phone">+63 915 456 7890</td>
+                                <td class="user-orders">
+                                    <span class="orders-badge">33 orders</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge active">
+                                        <i class="fas fa-check-circle"></i>
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-icon view-user" title="View Profile">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-icon suspend-user" title="Suspend User">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- User 6 -->
+                            <tr data-user-id="1829" data-status="active">
+                                <td>
+                                    <input type="checkbox" class="checkbox row-checkbox">
+                                </td>
+                                <td class="user-id">#1829</td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">LT</div>
+                                        <div class="user-details">
+                                            <span class="user-name">Linda Torres</span>
+                                            <span class="user-joined">Joined Oct 2025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="user-email">linda.torres@email.com</td>
+                                <td class="user-phone">+63 919 321 6547</td>
+                                <td class="user-orders">
+                                    <span class="orders-badge">19 orders</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge active">
+                                        <i class="fas fa-check-circle"></i>
+                                        Active
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-icon view-user" title="View Profile">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-icon suspend-user" title="Suspend User">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="prevPage" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <div class="page-numbers">
+                        <button class="page-number active">1</button>
+                        <button class="page-number">2</button>
+                        <button class="page-number">3</button>
+                        <span class="page-dots">...</span>
+                        <button class="page-number">24</button>
+                    </div>
+                    <button class="pagination-btn" id="nextPage">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- View User Profile Modal -->
+    <div class="modal-overlay" id="userProfileModal">
+        <div class="modal glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">User Profile</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-header">
+                    <div class="profile-avatar">JD</div>
+                    <div class="profile-info">
+                        <h3 class="profile-name">Juan Dela Cruz</h3>
+                        <p class="profile-email">juan.delacruz@email.com</p>
+                        <span class="status-badge active">
+                            <i class="fas fa-check-circle"></i>
+                            Active
+                        </span>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <div class="detail-row">
+                        <span class="detail-label">User ID:</span>
+                        <span class="detail-value">#1834</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value">+63 912 345 6789</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Member Since:</span>
+                        <span class="detail-value">October 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Total Orders:</span>
+                        <span class="detail-value">42 orders</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Total Spent:</span>
+                        <span class="detail-value">₱12,450.00</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Last Order:</span>
+                        <span class="detail-value">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Close</button>
+                <button class="btn-primary" id="viewOrdersBtn">View Orders</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suspend User Modal -->
+    <div class="modal-overlay" id="suspendUserModal">
+        <div class="modal glass-card small">
+            <div class="modal-header">
+                <h2 class="modal-title">Suspend User</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to suspend this user? They won't be able to place orders until reactivated.</p>
+                <div class="form-group">
+                    <label>Reason for suspension (optional):</label>
+                    <textarea id="suspendReason" rows="3" placeholder="Enter reason..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-danger" id="confirmSuspend">Suspend User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activate User Modal -->
+    <div class="modal-overlay" id="activateUserModal">
+        <div class="modal glass-card small">
+            <div class="modal-header">
+                <h2 class="modal-title">Activate User</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to activate this user? They will be able to place orders again.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-primary" id="confirmActivate">Activate User</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Js/Dashboard.js"></script>
+    <script src="../Js/Users.js"></script>
+</body>
+</html>

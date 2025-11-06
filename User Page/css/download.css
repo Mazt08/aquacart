@@ -1,0 +1,886 @@
+/* ===================================
+   AQUA CART - DOWNLOAD PAGE STYLES
+   =================================== */
+
+:root {
+    --color-aqua: #4DD0E1;
+    --color-light-aqua: #B2EBF2;
+    --color-deep-teal: #00838F;
+    --color-dark-teal: #006064;
+    --color-text-primary: #263238;
+    --color-text-secondary: #546E7A;
+    --color-bg-light: #F1F8F9;
+    --color-white: #FFFFFF;
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --transition-fast: 0.3s ease;
+    --border-radius: 12px;
+    --border-radius-pill: 50px;
+    --shadow-sm: 0 2px 8px rgba(0, 131, 143, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 131, 143, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 131, 143, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    background: var(--color-white);
+}
+
+/* ===================================
+   DOWNLOAD PAGE LAYOUT
+   =================================== */
+
+.download-page {
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+/* Hero Banner */
+.download-hero {
+    background: linear-gradient(135deg, var(--color-aqua) 0%, var(--color-deep-teal) 100%);
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: floatBackground 20s linear infinite;
+}
+
+@keyframes floatBackground {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.download-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.download-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 16px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.download-hero p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ===================================
+   APP SECTION
+   =================================== */
+
+.app-section {
+    padding: 80px 20px;
+    background: var(--color-white);
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.app-info h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-dark-teal);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.app-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+}
+
+.app-features {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.app-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+}
+
+.app-features li svg {
+    flex-shrink: 0;
+    color: var(--color-aqua);
+    margin-top: 2px;
+}
+
+.app-features li strong {
+    color: var(--color-dark-teal);
+}
+
+/* App Store Badges */
+.app-badges {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.app-badge {
+    display: inline-block;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.app-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.app-badge:focus {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 4px;
+}
+
+.app-badge svg {
+    display: block;
+    height: 48px;
+    width: auto;
+}
+
+/* Privacy Note */
+.privacy-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.privacy-note svg {
+    flex-shrink: 0;
+    color: var(--color-aqua);
+}
+
+/* Phone Mockup */
+.app-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-frame {
+    width: 300px;
+    height: 600px;
+    background: linear-gradient(135deg, #263238 0%, #37474F 100%);
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: var(--color-white);
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen-carousel {
+    width: 100%;
+    height: calc(100% - 40px);
+    position: relative;
+}
+
+.screen-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen-slide.active {
+    opacity: 1;
+}
+
+.screen-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen-header {
+    margin-bottom: 20px;
+}
+
+.screen-header h3 {
+    font-size: 1.25rem;
+    color: var(--color-dark-teal);
+}
+
+/* Product Grid Demo */
+.product-grid-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+}
+
+.demo-product {
+    background: linear-gradient(135deg, var(--color-light-aqua) 0%, var(--color-aqua) 100%);
+    border-radius: 12px;
+    aspect-ratio: 1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.demo-product:nth-child(2) { animation-delay: 0.2s; }
+.demo-product:nth-child(3) { animation-delay: 0.4s; }
+.demo-product:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Checkout Demo */
+.checkout-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.demo-item {
+    background: var(--color-bg-light);
+    height: 80px;
+    border-radius: 12px;
+    animation: slideIn 1s ease-out;
+}
+
+.demo-item:nth-child(2) { animation-delay: 0.2s; }
+
+.demo-button {
+    background: linear-gradient(135deg, var(--color-aqua) 0%, var(--color-deep-teal) 100%);
+    color: var(--color-white);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: auto;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Tracking Demo */
+.tracking-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.demo-map {
+    background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+    flex: 1;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.demo-map::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--color-deep-teal);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ping 1.5s ease-in-out infinite;
+}
+
+@keyframes ping {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.5; }
+}
+
+.demo-status {
+    background: var(--color-aqua);
+    color: var(--color-white);
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-text-secondary);
+    opacity: 0.3;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.dot.active {
+    opacity: 1;
+    background: var(--color-aqua);
+    transform: scale(1.2);
+}
+
+/* ===================================
+   BROCHURE SECTION
+   =================================== */
+
+.brochure-section {
+    padding: 80px 20px;
+    background: var(--color-bg-light);
+}
+
+.brochure-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.brochure-card {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.brochure-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.brochure-icon {
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.brochure-icon svg {
+    color: var(--color-aqua);
+}
+
+.brochure-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-dark-teal);
+    margin-bottom: 16px;
+}
+
+.brochure-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Preview Thumbnails */
+.brochure-previews {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.preview-thumbnail {
+    width: 120px;
+}
+
+.thumbnail-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--color-light-aqua) 0%, var(--color-aqua) 50%, var(--color-deep-teal) 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
+}
+
+.preview-thumbnail:hover .thumbnail-placeholder {
+    transform: scale(1.05);
+}
+
+.thumbnail-placeholder span {
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* Download Button */
+.btn-download-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--color-aqua) 0%, var(--color-deep-teal) 100%);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius-pill);
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+}
+
+.btn-download-pdf:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-download-pdf:focus {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 4px;
+}
+
+.btn-download-pdf svg {
+    flex-shrink: 0;
+}
+
+.file-size {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+/* ===================================
+   BENEFITS SECTION
+   =================================== */
+
+.benefits-section {
+    padding: 80px 20px;
+    background: var(--color-white);
+}
+
+.benefits-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.benefits-container h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-dark-teal);
+    margin-bottom: 60px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.benefit-card {
+    text-align: center;
+}
+
+.benefit-icon {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-light-aqua) 0%, var(--color-aqua) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.benefit-icon svg {
+    color: var(--color-deep-teal);
+}
+
+.benefit-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-dark-teal);
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* ===================================
+   EMAIL MODAL
+   =================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    color: var(--color-dark-teal);
+    background: var(--color-bg-light);
+}
+
+.modal-close:focus {
+    outline: 2px solid var(--color-aqua);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.modal-header svg {
+    color: var(--color-aqua);
+    margin-bottom: 16px;
+}
+
+.modal-header h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-dark-teal);
+    margin-bottom: 8px;
+}
+
+.modal-header p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+/* Email Form */
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--color-dark-teal);
+    font-size: 0.875rem;
+}
+
+.form-group input {
+    padding: 14px 16px;
+    border: 2px solid var(--color-light-aqua);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: all var(--transition-fast);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-aqua);
+    box-shadow: 0 0 0 4px rgba(77, 208, 225, 0.1);
+}
+
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--color-aqua) 0%, var(--color-deep-teal) 100%);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius-pill);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-submit:focus {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 4px;
+}
+
+.form-privacy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    justify-content: center;
+}
+
+.form-privacy svg {
+    flex-shrink: 0;
+    color: var(--color-aqua);
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 768px) {
+    .download-hero h1 {
+        font-size: 2rem;
+    }
+
+    .download-hero p {
+        font-size: 1rem;
+    }
+
+    /* App Section - Stack Vertically */
+    .app-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .app-info h2 {
+        font-size: 1.75rem;
+    }
+
+    .phone-frame {
+        width: 250px;
+        height: 500px;
+    }
+
+    /* Benefits Grid - 1 Column */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    /* Brochure Previews */
+    .brochure-previews {
+        gap: 12px;
+    }
+
+    .preview-thumbnail {
+        width: 90px;
+    }
+
+    .brochure-card {
+        padding: 40px 24px;
+    }
+
+    .brochure-card h2 {
+        font-size: 1.5rem;
+    }
+
+    /* App Badges */
+    .app-badges {
+        justify-content: center;
+    }
+
+    /* Modal */
+    .modal-content {
+        padding: 32px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-section,
+    .brochure-section,
+    .benefits-section {
+        padding: 60px 16px;
+    }
+
+    .download-hero {
+        padding: 40px 16px;
+    }
+
+    .app-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .phone-frame {
+        width: 220px;
+        height: 440px;
+    }
+
+    .brochure-previews {
+        gap: 8px;
+    }
+
+    .preview-thumbnail {
+        width: 70px;
+    }
+
+    .btn-download-pdf {
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
+}
+
+/* ===================================
+   ACCESSIBILITY
+   =================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus Visible */
+*:focus-visible {
+    outline: 3px solid var(--color-aqua);
+    outline-offset: 2px;
+}
+
+/* Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
