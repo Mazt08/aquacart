@@ -84,6 +84,4 @@ try {
         echo json_encode(['error' => 'server_error', 'message' => 'Failed to add item to cart', 'debug' => $e->getMessage()]);
         exit();
     }
-}
-
 ?>
